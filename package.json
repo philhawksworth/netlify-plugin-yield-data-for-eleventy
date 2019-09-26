@@ -1,0 +1,21 @@
+{
+  "name": "netlify-plugin-yield-data-for-eleventy",
+  "version": "0.1.0",
+  "description": "A Netlify plugin to expose data collected to in the Netlify build cache to place and structure that Eleventy can use",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No test specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/philhawksworth/netlify-plugin-yield-data-for-eleventy"
+  },
+  "keywords": [
+    "netlify",
+    "ssg",
+    "feed",
+    "data"
+  ],
+  "author": "Phil Hawksworth",
+  "license": "ISC"
+}
