@@ -6,7 +6,7 @@ A Netlify plugin to expose data collected to in the Netlify build cache to place
 
 ## Overview
 
-This plugin exposes data files gathered by previous operations into the Netlify build cache and exposes them to a destinations and format suitable for the Eleventy SSG to use in its temapltes at site generation time.
+This plugin exposes data files gathered by previous operations into the Netlify build cache and exposes them to a destinations and format suitable for the Eleventy SSG to use in its templates at site generation time.
 
 ## Demonstration
 
