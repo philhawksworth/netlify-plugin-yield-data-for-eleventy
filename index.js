@@ -5,7 +5,8 @@ function netlifyPlugin(conf) {
 
   // Where does the plugin config tell us to put data?
   const DATA_DIR = conf.data_dir;
-  let PLUGIN_CACHE_DIR;
+  let PLUGIN_CACHE_ROOT;
+  let CACHE_FOLDERS = [];
 
   return {
 
@@ -14,12 +15,20 @@ function netlifyPlugin(conf) {
 
       const prodCache = '/opt/build/cache';
       if (fs.existsSync(prodCache)) {
-        PLUGIN_CACHE_DIR = `${prodCache}/netlify-plugin-fetch-feeds`;
-        console.log('prodCache exists. Cache here:', PLUGIN_CACHE_DIR);s
+        PLUGIN_CACHE_ROOT = `${prodCache}`;
+        console.log('prodCache exists. Cache here:', PLUGIN_CACHE_ROOT);s
       } else {
-        PLUGIN_CACHE_DIR = `${data.constants.CACHE_DIR}/netlify-plugin-fetch-feeds`;
-        console.log('We are local. Cache here:', PLUGIN_CACHE_DIR);
+        PLUGIN_CACHE_ROOT = `${data.constants.CACHE_DIR}`;
+        console.log('We are local. Cache here:', PLUGIN_CACHE_ROOT);
       }
+
+      // collect an array of every folder specified in yaml
+      conf.cache_sources.forEach(folder => {
+        CACHE_FOLDERS.push(`${PLUGIN_CACHE_ROOT}/${folder}`)
+      });
+
+
+
 
       // ensure the target directory exists
       if (!fs.existsSync(DATA_DIR)){
@@ -27,19 +36,27 @@ function netlifyPlugin(conf) {
       };
 
 
-      // copy each file to the SSG's data directory
-      fs.readdir(PLUGIN_CACHE_DIR, (err, files) => {
-        files.forEach(file => {
+      console.log('CACHE_FOLDERS :', CACHE_FOLDERS);
 
-          fs.writeFile(`${DATA_DIR}/${file}`, require(`${PLUGIN_CACHE_DIR}/${file}`).content, err => {
-            if(err) {
-              console.log(`Problem copying data file: ${file}`, err);
-            } else {
-              console.log(`Data saved for SSG: ${file}`);
-            }
+
+      CACHE_FOLDERS.forEach(folder => {
+
+
+        // copy each file to the SSG's data directory
+        fs.readdir(folder, (err, files) => {
+          files.forEach(file => {
+
+            fs.writeFile(`${DATA_DIR}/${file}`, require(`${folder}/${file}`).content, err => {
+              if(err) {
+                console.log(`Problem copying data file: ${file}`, err);
+              } else {
+                console.log(`Data saved for SSG: ${file}`);
+              }
+            });
+
           });
-
         });
+
       });
     }
 
