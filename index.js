@@ -16,7 +16,7 @@ function netlifyPlugin(conf) {
       const prodCache = '/opt/build/cache';
       if (fs.existsSync(prodCache)) {
         PLUGIN_CACHE_ROOT = `${prodCache}`;
-        console.log('prodCache exists. Cache here:', PLUGIN_CACHE_ROOT);s
+        console.log('prodCache exists. Cache here:', PLUGIN_CACHE_ROOT);
       } else {
         PLUGIN_CACHE_ROOT = `${data.constants.CACHE_DIR}`;
         console.log('We are local. Cache here:', PLUGIN_CACHE_ROOT);
