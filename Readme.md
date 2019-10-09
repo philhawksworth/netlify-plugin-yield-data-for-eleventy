@@ -43,8 +43,10 @@ To use plugins, a `plugins` array should be specified in your `netlify.yml`. Eac
 
 ```yaml
 plugins:
-  - netlify-plugin-yield-data-for-eleventy:
-      data_dir: src/site/_data # path to where data files should be copied
+  prime-eleventy:
+    type: netlify-plugin-yield-data-for-eleventy
+    config:
+      data_dir: src/site/_data
       cache_sources: # An array of folders within the netlify cache where data should be sourced
         - netlify-plugin-fetch-feeds
 ```
