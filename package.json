@@ -12,6 +12,7 @@
   },
   "keywords": [
     "netlify",
+    "netlify-plugin",
     "ssg",
     "feed",
     "data"
