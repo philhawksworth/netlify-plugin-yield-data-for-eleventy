@@ -11,7 +11,7 @@ function netlifyPlugin(conf) {
   return {
 
     // Hook into lifecycle
-    preBuild: (data) => {
+    onPreBuild: (data) => {
 
       const prodCache = '/opt/build/cache';
       if (fs.existsSync(prodCache)) {
