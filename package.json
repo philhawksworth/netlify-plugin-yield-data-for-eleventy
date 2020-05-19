@@ -10,6 +10,9 @@
     "type": "git",
     "url": "https://github.com/philhawksworth/netlify-plugin-yield-data-for-eleventy"
   },
+  "bugs": {
+    "url": "https://github.com/philhawksworth/netlify-plugin-yield-data-for-eleventy/issues"
+  },
   "keywords": [
     "netlify",
     "netlify-plugin",
