@@ -6,7 +6,6 @@ function netlifyPlugin(conf) {
   // Where does the plugin config tell us to put data?
   const DATA_DIR = conf.data_dir;
   let PLUGIN_CACHE_ROOT;
-  let CACHE_FOLDERS = [];
 
   return {
 
@@ -23,9 +22,7 @@ function netlifyPlugin(conf) {
       }
 
       // collect an array of every folder specified in yaml
-      conf.cache_sources.forEach(folder => {
-        CACHE_FOLDERS.push(`${PLUGIN_CACHE_ROOT}/${folder}`)
-      });
+      const CACHE_FOLDERS = data.inputs.cache_sources.map(folder => `${PLUGIN_CACHE_ROOT}/${folder}`)
 
 
 
