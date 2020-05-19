@@ -1,0 +1,6 @@
+name: netlify-plugin-yield-data-for-eleventy
+inputs:
+  - name: data_dir
+    required: true
+  - name: cache_sources
+    required: true
