@@ -5,21 +5,17 @@ function netlifyPlugin(conf) {
 
   // Where does the plugin config tell us to put data?
   const DATA_DIR = conf.data_dir;
-  let PLUGIN_CACHE_ROOT;
   let CACHE_FOLDERS = [];
 
   return {
 
     // Hook into lifecycle
     onPreBuild: (data) => {
-
-      const prodCache = '/opt/build/cache';
-      if (fs.existsSync(prodCache)) {
-        PLUGIN_CACHE_ROOT = `${prodCache}`;
-        console.log('prodCache exists. Cache here:', PLUGIN_CACHE_ROOT);
-      } else {
-        PLUGIN_CACHE_ROOT = `${data.constants.CACHE_DIR}`;
+      const PLUGIN_CACHE_ROOT = data.constants.CACHE_DIR;
+      if (data.constants.IS_LOCAL) {
         console.log('We are local. Cache here:', PLUGIN_CACHE_ROOT);
+      } else {
+        console.log('prodCache exists. Cache here:', PLUGIN_CACHE_ROOT);
       }
 
       // collect an array of every folder specified in yaml
